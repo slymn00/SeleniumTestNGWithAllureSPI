@@ -31,7 +31,9 @@ public class TestlerController {
     @BeforeSuite(alwaysRun = true)
     public void removeReportHistory() {
         if (Objects.equals(DataFinder.getValue("config", "deleteHistory"), "true")) {
-            Terminal.runCommand("C:\\Program Files\\allure-2.19.0\\bin\\allure.bat generate allure-results -o C:\\Users\\wkkod\\IdeaProjects\\TestNGProject\\allure-results --clean");
+            Terminal.runCommand("cmd /c allure generate --clean --output allure-results");
+            //can be use underline command too
+            //Terminal.runCommand("C:\\Program Files\\allure-2.19.0\\bin\\allure.bat generate allure-results -o C:\\Users\\wkkod\\IdeaProjects\\TestNGProject\\allure-results --clean");
         }
     }
 

@@ -18,8 +18,7 @@
         <ashot-version>1.5.4</ashot-version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <allure.maven.version>2.10.0</allure.maven.version>
-        <allure.testng.version>2.19.0</allure.testng.version>
+        <allure-testng-version>2.13.9</allure-testng-version>
     </properties>
 
     <dependencies>
@@ -61,7 +60,7 @@
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.5</version>
+            <version>7.4.0</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/log4j/log4j -->
@@ -73,7 +72,20 @@
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
-            <version>2.19.0</version>
+            <version>2.17.3</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-rest-assured -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-rest-assured</artifactId>
+            <version>2.17.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.11.0</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
         <dependency>
@@ -86,13 +98,6 @@
             <groupId>ru.yandex.qatools.ashot</groupId>
             <artifactId>ashot</artifactId>
             <version>1.5.4</version>
-        </dependency>
-
-        <!--Sahte veri oluşturan kütüphane -->
-        <dependency>
-            <groupId>com.github.javafaker</groupId>
-            <artifactId>javafaker</artifactId>
-            <version>1.0.2</version>
         </dependency>
         <!--yaml parse için eklendi-->
         <dependency>
@@ -143,15 +148,6 @@
                         <version>${aspectj.version}</version>
                     </dependency>
                 </dependencies>
-            </plugin>
-
-            <plugin>
-                <groupId>io.qameta.allure</groupId>
-                <artifactId>allure-maven</artifactId>
-                <version>${allure.maven.version}</version>
-                <configuration>
-                    <reportVersion>${allure.testng.version}</reportVersion>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

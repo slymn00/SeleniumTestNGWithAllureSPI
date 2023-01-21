@@ -1,0 +1,3 @@
+chromeHeadless: true
+firefoxHeadless: true
+mobileHeadless: true

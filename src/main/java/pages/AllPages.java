@@ -19,7 +19,7 @@ public class AllPages {
     //her page class icin public method olusturup obje olusturacagiz
 
     public TrendyolHomePageElements trendyolHomePageElements(){
-        if (trendyolHomePageElements==null){ //eger benim burda olusturdugum instance apiDemosPage yani null ise
+        if (trendyolHomePageElements==null){ //eger benim burda olusturdugum instance trendyolHomePageElements yani null ise
             trendyolHomePageElements=new TrendyolHomePageElements(); //o zaman bunu bana bir obje olarak olustur daha sonra bu objeyi bana ver
         }
         return trendyolHomePageElements; //ben bu methodu cagirdigim zaman onu kullanayim

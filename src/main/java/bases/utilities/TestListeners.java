@@ -1,40 +1,60 @@
 package bases.utilities;
 
-import io.qameta.allure.Attachment;
-import org.testng.ITestContext;
-import org.testng.ITestListener;
-import org.testng.ITestResult;
+import io.qameta.allure.Allure;
+import io.qameta.allure.listener.TestLifecycleListener;
+import io.qameta.allure.model.Status;
+import io.qameta.allure.model.TestResult;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 
-public class TestListeners implements ITestListener {
+import java.io.ByteArrayInputStream;
+import java.util.Objects;
 
-    @Override
-    public void onTestFailure(ITestResult result){
-        if (Driver.getDriver() != null) {
-            Driver.takeScreenShot();
-            Log.warning(Driver.getDriver().getCurrentUrl());
+public class TestListeners implements TestLifecycleListener {
+
+
+
+    public void beforeTestStop(TestResult result) {
+
+        if (result.getStatus() == Status.FAILED || result.getStatus() == Status.BROKEN) {
+            if (Driver.getDriver() != null)
+                Allure.addAttachment(result.getName(), new ByteArrayInputStream(((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES)));
+        }
+
+    }
+
+    public <T> T startTest(T page){
+        ThreadLocal<T> tl = new ThreadLocal<>();
+        tl.set(page);
+        return tl.get();
+    }
+
+    public WebDriver getDriver(String browser) {
+        Driver.setUp(browser);
+
+        return Driver.getDriver();
+    }
+
+    @AfterMethod(alwaysRun = true)
+    public void tearDown() {
+        Driver.closeDriver();
+    }
+
+    @BeforeSuite(alwaysRun = true)
+    public void removeReportHistory() {
+        if (Objects.equals(DataFinder.getValue("config", "deleteHistory"), "true")) {
+            Terminal.runCommand("cmd /c allure generate --clean --output allure-results");
+            //can be use underline command too
+            //Terminal.runCommand("C:\\Program Files\\allure-2.19.0\\bin\\allure.bat generate allure-results -o C:\\Users\\wkkod\\IdeaProjects\\TestNGProject\\allure-results --clean");
         }
     }
 
-    @Override
-    public void onTestFailedButWithinSuccessPercentage(ITestResult result){
-        Driver.takeScreenShot();
-
-    }
-
-    @Override
-    public void onTestFailedWithTimeout(ITestResult result){
-        Driver.takeScreenShot();
-
-    }
-
-    //HTML attachments for Allure
-    @Attachment(value = "{0}", type = "text/html")
-    public static String attachHtml(String html) {
-        return html;
-    }
-
-    @Override
-    public void onStart(ITestContext iTestContext) {
-        iTestContext.setAttribute("WebDriver", Driver.getDriver());
+    @AfterSuite(alwaysRun = true)
+    public void openAllureReport() {
+        Terminal.runCommand("cmd /c allure serve -h localhost");
     }
 }

@@ -1,11 +1,10 @@
 package tests;
 
 import TestMethods.TrendyolHomePageMethos;
-import bases.utilities.TestlerController;
+import bases.utilities.TestListeners;
 import org.testng.annotations.Test;
-import pages.TrendyolHomePageElements;
 
-public class Testler extends TestlerController {
+public class Testler extends TestListeners {
 
 
 

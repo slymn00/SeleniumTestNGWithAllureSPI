@@ -8,10 +8,13 @@ import org.testng.annotations.Listeners;
 
 import java.util.Objects;
 
-@Listeners({TestListeners.class})
+//@Listeners({TestListeners.class})
 public class TestlerController {
 
-    public <T> T startTest(T page){
+   /*
+   /**Bu class testng 7.7.0 ve eskisi icin kullanilabilir.
+
+   public <T> T startTest(T page){
         ThreadLocal<T> tl = new ThreadLocal<>();
         tl.set(page);
         return tl.get();
@@ -40,6 +43,6 @@ public class TestlerController {
     @AfterSuite(alwaysRun = true)
     public void openAllureReport() {
         Terminal.runCommand("cmd /c allure serve -h localhost");
-    }
+    }*/
 
 }

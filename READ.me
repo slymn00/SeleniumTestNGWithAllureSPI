@@ -1,0 +1,19 @@
+https://github.com/cbeust/testng/issues/2791
+Allure 7.7.0'da screenschot calismadigi icin testlifecyclelistener entegrasyonu bu şekilde yapılır.
+
+Create file resources/META-INF/services/io.qameta.allure.listener.TestLifecycleListener
+write inside this file - path to Listener (chain of packages+class name) (For examle: Listners.MyListener)
+create your listner like this
+public class MyListener implements TestLifecycleListener {
+
+	@Override
+	public void beforeTestStop(TestResult result) {
+
+		  if (result.getStatus() == Status.FAILED || result.getStatus() == Status.BROKEN) {
+	            if (driver != null)
+	                Allure.addAttachment(result.getName(), new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
+	        }
+
+	}
+}
+For more information: google it: Java ServiceLoader mechanism (SPI)

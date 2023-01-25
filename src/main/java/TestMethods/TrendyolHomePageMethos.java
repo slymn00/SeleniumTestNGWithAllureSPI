@@ -1,7 +1,6 @@
 package TestMethods;
 
 import bases.utilities.BaseGetData;
-import bases.utilities.DataFinder;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import pages.AllPages;

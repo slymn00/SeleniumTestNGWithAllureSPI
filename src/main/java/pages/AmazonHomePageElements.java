@@ -1,14 +1,13 @@
 package pages;
 
 import bases.utilities.Driver;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class TrendyolHomePageElements {
+public class AmazonHomePageElements {
 
-    public TrendyolHomePageElements(){
+    public AmazonHomePageElements(){
         PageFactory.initElements(Driver.getDriver(), this);
     }
 

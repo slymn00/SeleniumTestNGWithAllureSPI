@@ -5,17 +5,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import pages.AllPages;
 
-public class TrendyolHomePageMethos extends AllPages {
+public class AmazonHomePageMethos extends AllPages {
 
 
-    public TrendyolHomePageMethos(WebDriver driver){
+    public AmazonHomePageMethos(WebDriver driver){
         PageFactory.initElements(driver, this);
         driver.manage().deleteAllCookies();
     }
 
     public void checkSearch(){
         lib.navigateTo(BaseGetData.Url.AMAZON_URL);
-        lib.Control(trendyolHomePageElements().btnAutoComplete.isDisplayed(),"autoComplete butonu goruntulendi.","autocomplete butonu goruntulenemedi.");
+        lib.Control(amazonHomePageElements().btnAutoComplete.isDisplayed(),"autoComplete butonu goruntulendi.","autocomplete butonu goruntulenemedi.");
 
     }
 }

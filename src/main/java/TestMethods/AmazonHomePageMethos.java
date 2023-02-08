@@ -15,7 +15,6 @@ public class AmazonHomePageMethos extends AllPages {
 
     public void checkSearch(){
         lib.navigateTo(BaseGetData.Url.AMAZON_URL);
-        lib.Control(amazonHomePageElements().btnAutoComplete.isDisplayed(),"autoComplete butonu goruntulendi.","autocomplete butonu goruntulenemedi.");
-
+        lib.control(lib.isDisplayed(amazonHomePageElements().btnAutoComplete),"autoComplete butonu goruntulendi.","autocomplete butonu goruntulenemedi.");
     }
 }

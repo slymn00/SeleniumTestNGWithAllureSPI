@@ -3,6 +3,7 @@ package bases.utilities;
 import bases.exceptions.PageCouldNotLoaded;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -30,7 +31,7 @@ public class SeleniumBase {
      * @param onTrue  Expected result message
      * @param onFalse False result message
      */
-    public void Control(boolean statement, String onTrue, String onFalse) {
+    public void control(boolean statement, String onTrue, String onFalse) {
 
         if (statement) {
             Log.pass(onTrue);
@@ -43,7 +44,7 @@ public class SeleniumBase {
     /**
      * Default Wait Method
      */
-    public void Wait(int millisecond) {
+    public void wait(int millisecond) {
         try {
             Thread.sleep(millisecond);
         } catch (InterruptedException e) {
@@ -59,6 +60,11 @@ public class SeleniumBase {
         } catch (Exception e) {
             Log.error(new PageCouldNotLoaded(DataFinder.getValue(url.name()), e));
         }
+    }
+
+
+    public boolean isDisplayed(WebElement dispEle){
+        return dispEle.isDisplayed();
     }
 
 }
